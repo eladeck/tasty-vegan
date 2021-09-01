@@ -12,6 +12,10 @@ const Header = styled.div`
   padding: 87px;
   justify-content: center;
   background-color: #f2e1ef;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Img = styled.img`
@@ -19,6 +23,9 @@ const Img = styled.img`
   border-radius: 50%;
   border: 3px solid pink;
   box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 
@@ -57,7 +64,7 @@ const App = () => {
   return (
     <Container>
       <Header>
-        <Title>Cooking with</Title>
+        <Title>Cooking with Elad</Title>
         <Img src={'my-photo.jpeg'} />
       </Header>
       <Seperator />
