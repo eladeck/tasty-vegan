@@ -38,6 +38,7 @@ const Tag = styled.button`
 const TagFilters = styled.div`
   display: flex;
   margin: 1rem;
+  place-content: center;
 `;
 
 const TagFilter = styled.button`
@@ -101,7 +102,7 @@ const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
 
 const PhotosGallery = () => {
     const [photos, setPhotos] = useState(photosData);
-    const [tagFilters, setTagFilters] = useState(['ALL']);
+    const [tagFilters, setTagFilters] = useState([]);
     console.log(tagFilters);
 
     const onTagChosenGallery = (tag, name) => {
@@ -118,11 +119,11 @@ const PhotosGallery = () => {
     return (
         <>
             <TagFilters>
-                {['ALL', ...allTags].map((tag) => <TagFilter isSelected={tagFilters.includes(tag)} onClick={() => onTagFilterClick(tag)}>{tag}</TagFilter>)}
+                {allTags.map((tag) => <TagFilter isSelected={tagFilters.includes(tag)} onClick={() => onTagFilterClick(tag)}>{tag}</TagFilter>)}
             </TagFilters>
             <Cards>
                 {photos
-                    .filter((photo) => tagFilters.includes('ALL') || tagFilters.some((tagFilter) => photo.tags.includes(tagFilter)))
+                    .filter((photo) => tagFilters.length === 0 || tagFilters.some((tagFilter) => photo.tags.includes(tagFilter)))
                     .sort((photo1, photo2) => ('' + photo1.name).localeCompare(photo2.name))
                     .map(({ src, name, tags }) => {
                         return (

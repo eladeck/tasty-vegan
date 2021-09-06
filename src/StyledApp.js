@@ -38,15 +38,4 @@ export const Title = styled.div`
 `;
 
 
-export const Seperator = styled.span`
-  height: 0.4rem ;
-  display: block;
-  margin: 3rem;
-  background: radial-gradient(
-    circle farthest-corner at center center,
-    pink,
-    #f2e1ef
-  ) no-repeat;
-`;
-
 
