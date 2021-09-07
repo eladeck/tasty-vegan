@@ -13,10 +13,6 @@ export const HeaderContainer = styled.div`
   padding: 2rem;
   justify-content: center;
   background-color: #f2e1ef;
-
-  @media (max-width: 768px) {
-    padding: 0;
-  }
 `;
 
 export const Img = styled.img`
@@ -24,14 +20,10 @@ export const Img = styled.img`
   border-radius: 50%;
   border: 0.2rem solid pink;
   box-shadow: rgb(38 57 77) 0px 20px 30px -10px;
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 
 export const Title = styled.div`
-  font-family: 'Waiting for the Sunrise', cursive;
   text-align: center;
   margin-right: 5rem;
   font-size: 10rem;

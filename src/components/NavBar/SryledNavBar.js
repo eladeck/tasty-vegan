@@ -26,12 +26,12 @@ const { Pink, White, Black } = colors[theme];
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin: 0 64rem;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const Link = styled(ReactLink)`
-  font-family: 'Waiting for the Sunrise', cursive;
+  margin: 4rem;
   background: transparet;
   font-size: 4rem;
   height: 4rem;

@@ -4,6 +4,10 @@ html {
   height: 100%;
 }
 
+html * {
+  font-family: 'Waiting for the Sunrise', cursive;
+}
+
 #root {
   height: 100%;
 }

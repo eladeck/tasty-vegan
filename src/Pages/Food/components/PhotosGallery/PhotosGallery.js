@@ -1,12 +1,14 @@
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import photosData from './photos.json'
 
 const Card = styled.div`
   width: 40rem;
   height: 40rem;
   padding: 8rem;
+  transition: all .7s ease-in;
+  ${({ hide }) => hide && css`display: none; opacity: 0;`};
 `;
 
 const Cards = styled.div`
@@ -31,9 +33,9 @@ const StyledTags = styled.div`
 `;
 
 const Tag = styled.button`
-  background-color: lightblue;
-  opacity: 0.5;
   margin: 1rem;
+  font-weight: 600;
+  font-size: 20px;
 `;
 
 const TagFilters = styled.div`
@@ -42,17 +44,15 @@ const TagFilters = styled.div`
   place-content: center;
 `;
 
-const TagFilter = styled.button`
-  margin: 1rem;
-  transition: all .2s linear;
+const TagFilter = styled.div`
+  margin: auto;
   border: 0;
   background: transparent;
   :hover {
       cursor: pointer;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      color: rgba(100, 150, 100, 1);
   }
-  ${({ isSelected }) => isSelected && 'box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'};
-  ${({ isSelected }) => isSelected && 'font-weight: 600'};
+  ${({ isSelected }) => isSelected && css`box-shadow: rgba(0, 255, 0, 0.2) 0 0.4rem 0 0; color: brown`};
 `;
 
 
@@ -68,7 +68,10 @@ const allTags = [
     "Cooked",
     "Curry",
     "Protein Snack",
-    "Jar"
+    "Jar",
+    "Watermelon",
+    "Juice",
+    "Smoothie"
 ];
 
 const useToggler = (initialValue) => {
@@ -80,7 +83,7 @@ const useToggler = (initialValue) => {
 const Tags = ({ onTagChosen }) => {
     return (
         <StyledTags>
-            {allTags.map((tag) => <Tag onClick={() => onTagChosen(tag)}>{tag}</Tag>)}
+            {allTags.map((tag) => <Tag onClick={(e) => { e.stopPropagation(); onTagChosen(tag); }}>{tag}</Tag>)}
         </StyledTags>
     );
 }
@@ -90,7 +93,6 @@ const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
 
     const onTagChosen = (tag) => {
         onTagChosenGallery(tag, name);
-        toggleIsTagsShown(false);
     }
 
     return (
@@ -104,7 +106,7 @@ const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
 const PhotosGallery = () => {
     const [photos, setPhotos] = useState(photosData);
     const [tagFilters, setTagFilters] = useState([]);
-    console.log(tagFilters);
+    const isFiltered = tagFilters.length !== 0;
 
     const onTagChosenGallery = (tag, name) => {
         const theObjectToChange = photos.find((photo) => photo.name === name);
@@ -124,11 +126,11 @@ const PhotosGallery = () => {
             </TagFilters>
             <Cards>
                 {photos
-                    .filter((photo) => tagFilters.length === 0 || tagFilters.some((tagFilter) => photo.tags.includes(tagFilter)))
+                    // .filter((photo) => tagFilters.length === 0 || tagFilters.some((tagFilter) => photo.tags.includes(tagFilter)))
                     .sort((photo1, photo2) => ('' + photo1.name).localeCompare(photo2.name))
                     .map(({ src, name, tags }) => {
                         return (
-                            <Card>
+                            <Card hide={isFiltered && tagFilters.some((tagFilter) => !tags.includes(tagFilter))}>
                                 <span>{name} {JSON.stringify(tags)}</span>
                                 <ImageWrapper src={src} name={name} onTagChosenGallery={onTagChosenGallery} />
                             </Card>
