@@ -97,7 +97,8 @@ const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
 
     return (
         <StyledImgWrapper onClick={toggleIsTagsShown}>
-            <Img src={`photos/${src}`} alt={name} />
+            {/* /Photos/24B06EAA-01A2-408A-8490-EA476AFA1E30.jpg */}
+            <Img src={`https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${src}`} alt={name} />
             {isTagsShown && <Tags onTagChosen={onTagChosen} />}
         </StyledImgWrapper>
     );
