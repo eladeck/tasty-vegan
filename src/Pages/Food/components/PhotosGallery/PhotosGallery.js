@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
+import ImageGallery from 'react-image-gallery';
 import styled, { css } from 'styled-components';
 import photosData from './photos.json'
 
 const Card = styled.div`
   width: 40rem;
   height: 40rem;
-  padding: 8rem;
+  padding: 2rem;
   transition: all .7s ease-in;
   ${({ hide }) => hide && css`display: none; opacity: 0;`};
 `;
@@ -40,14 +41,16 @@ const Tag = styled.button`
 
 const TagFilters = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  max-width: 70%;
   margin: 1rem;
-  place-content: center;
 `;
 
 const TagFilter = styled.div`
-  margin: auto;
-  border: 0;
-  background: transparent;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 0.5px solid white;
+  background: hsl(191deg 95% 35% / 18%);
   :hover {
       cursor: pointer;
       color: rgba(100, 150, 100, 1);
@@ -99,7 +102,7 @@ const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
         <StyledImgWrapper onClick={toggleIsTagsShown}>
             {/* /Photos/24B06EAA-01A2-408A-8490-EA476AFA1E30.jpg */}
             <Img src={`https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${src}`} alt={name} />
-            {isTagsShown && <Tags onTagChosen={onTagChosen} />}
+            {/* {isTagsShown && <Tags onTagChosen={onTagChosen} />} */}
         </StyledImgWrapper>
     );
 }
@@ -120,6 +123,11 @@ const PhotosGallery = () => {
         return setTagFilters(tagFilters.includes(tag) ? tagFilters.filter((tagFilter) => tagFilter !== tag) : [...tagFilters, tag]);
     }
 
+    const imageGalleryItems = photos.map((photo) => ({
+        original: `https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${photo.src}`,
+        thumbnail: `https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${photo.src}`,
+    }));
+
     return (
         <>
             <TagFilters>
@@ -127,7 +135,6 @@ const PhotosGallery = () => {
             </TagFilters>
             <Cards>
                 {photos
-                    // .filter((photo) => tagFilters.length === 0 || tagFilters.some((tagFilter) => photo.tags.includes(tagFilter)))
                     .sort((photo1, photo2) => ('' + photo1.name).localeCompare(photo2.name))
                     .map(({ src, name, tags }) => {
                         return (
@@ -138,6 +145,21 @@ const PhotosGallery = () => {
                         );
                     })}
             </Cards>
+            {/* <ImageGallery 
+                items={imageGalleryItems}
+                infinite
+                showBullets
+                showFullscreenButton
+                showPlayButton
+                showThumbnails
+                showIndex
+                showNav
+                thumbnailPosition="bottom"
+                slideDuration={450}
+                slideInterval={2000}
+                slideOnThumbnailOver
+                additionalClass="app-image-gallery"
+                 /> */}
         </>
     );
 }
