@@ -22,7 +22,7 @@ const colors = {
 }
 
 const theme = 'default';
-const { Pink, White, Black } = colors[theme];
+const { Black } = colors[theme];
 
 export const Container = styled.div`
   display: flex;
