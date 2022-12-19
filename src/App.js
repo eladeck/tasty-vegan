@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AppContainer, VideoContainer, VideoIframe, HeaderContainer, Title } from './StyledApp';
+import { AppContainer, HeaderContainer, Title } from './StyledApp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Food from './Pages/Food/Food';
 import Home from './Pages/Home/Home';
@@ -8,7 +8,7 @@ import OtherPage from './Pages/OtherPage/OtherPage';
 import NavBar from './components/NavBar/NavBar';
 import Seperator from './components/Seperator';
 
-{/* <ReactPlayer url={'pouring-sauce-on-nice-cream.mp4'}>Cooking!</ReactPlayer> */ }
+// <ReactPlayer url={'pouring-sauce-on-nice-cream.mp4'}>Cooking!</ReactPlayer>
 const App = () => {
   return (
     <Router>
