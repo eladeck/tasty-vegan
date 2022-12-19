@@ -28,6 +28,7 @@ const Img = styled.img`
 
 `;
 
+/*
 const StyledTags = styled.div`
   position: absolute;
   top: 0;
@@ -38,6 +39,7 @@ const Tag = styled.button`
   font-weight: 600;
   font-size: 20px;
 `;
+*/
 
 const TagFilters = styled.div`
   display: flex;
