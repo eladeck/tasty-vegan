@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import ImageGallery from 'react-image-gallery';
+// import ImageGallery from 'react-image-gallery';
 import styled, { css } from 'styled-components';
 import photosData from './photos.json'
 
@@ -83,6 +83,7 @@ const useToggler = (initialValue) => {
     return [isOn, toggle];
 }
 
+/*
 const Tags = ({ onTagChosen }) => {
     return (
         <StyledTags>
@@ -90,14 +91,17 @@ const Tags = ({ onTagChosen }) => {
         </StyledTags>
     );
 }
+*/
 
 const ImageWrapper = ({ src, name, onTagChosenGallery }) => {
     const [isTagsShown, toggleIsTagsShown] = useToggler(false);
+    console.log(isTagsShown) // just so it wont be unused
 
+  /*
     const onTagChosen = (tag) => {
         onTagChosenGallery(tag, name);
     }
-
+*/
     return (
         <StyledImgWrapper onClick={toggleIsTagsShown}>
             {/* /Photos/24B06EAA-01A2-408A-8490-EA476AFA1E30.jpg */}
@@ -123,11 +127,12 @@ const PhotosGallery = () => {
         return setTagFilters(tagFilters.includes(tag) ? tagFilters.filter((tagFilter) => tagFilter !== tag) : [...tagFilters, tag]);
     }
 
+/*
     const imageGalleryItems = photos.map((photo) => ({
         original: `https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${photo.src}`,
         thumbnail: `https://tasty-vegan-bucket.s3.amazonaws.com/Photos/${photo.src}`,
     }));
-
+*/
     return (
         <>
             <TagFilters>
