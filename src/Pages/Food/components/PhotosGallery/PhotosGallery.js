@@ -25,7 +25,8 @@ const StyledImgWrapper = styled.div`
 const Img = styled.img`
   border: solid 5px hsla(0, 95%, 35%, 0.6);
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-
+  width:100%;
+  height:100%;
 `;
 
 /*
